@@ -9,6 +9,10 @@ import '../components/common/Newsletter.jsx';
 import '../components/common/NewsletterButton.jsx';
 import '../components/common/SearchForm.jsx';
 
+// meetups
+
+import '../components/meetups/MeetupsDashboard.jsx';
+
 // posts
 
 import '../components/posts/PostsHome.jsx';
