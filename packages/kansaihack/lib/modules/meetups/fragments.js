@@ -4,6 +4,7 @@ import { registerFragment } from 'meteor/vulcan:core';
 
 registerFragment(`
   fragment MeetupFragment on Meetup {
+    _id
     name
     description
     url
