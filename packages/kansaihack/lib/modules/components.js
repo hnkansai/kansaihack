@@ -12,6 +12,7 @@ import '../components/common/SearchForm.jsx';
 // meetups
 
 import '../components/meetups/MeetupsDashboard.jsx';
+import '../components/events/EventsDashboard.jsx';
 
 // posts
 
