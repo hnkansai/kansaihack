@@ -77,6 +77,41 @@ const schema = {
     }
   },
 
+  meetupId: {
+    type: String,
+    viewableBy: ['guests'],
+    insertableBy: ['members'],
+    editableBy: ['members'],
+    resolveAs: {
+      fieldName: 'meetup',
+      type: 'Meetup',
+      resolver: (event, args, context) => {
+        return context.Meetups.loader.load(event.meetupId);
+      },
+      addOriginalField: true,
+    },
+    query: `
+      MeetupsList{
+        _id
+        name
+      }
+    `,
+    options: props => props.data.MeetupsList.map(meetup => ({
+      value: meetup._id,
+      label: meetup.name,
+    })),
+    control: 'select',
+  },
+
+  date: {
+    type: Date,
+    optional: true,
+    viewableBy: ['guests'],
+    insertableBy: ['members'],
+    editableBy: ['members'],
+    control: 'datetime',
+  },
+
   // GraphQL only fields
 
   pageUrl: {
@@ -88,7 +123,7 @@ const schema = {
       resolver: (event, args, context) => {
         return context.Events.getPageUrl(event, true);
       },
-    }  
+    }
   },
 };
 
