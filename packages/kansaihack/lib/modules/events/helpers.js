@@ -16,6 +16,6 @@ import { Utils } from 'meteor/vulcan:core';
  * @param {Object} comment
  */
 Events.getPageUrl = function(event, isAbsolute = false){
-  const prefix = isAbsolute ? Utils.getSiteUrl().slice(0,-1) : '';  //???
+  const prefix = isAbsolute ? Utils.getSiteUrl().slice(0,-1) : '';
   return `${prefix}/events/${event._id}/${event.slug}`;
 };

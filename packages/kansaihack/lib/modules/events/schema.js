@@ -5,7 +5,7 @@ Comments schema
 */
 
 import Users from 'meteor/vulcan:users';
-import marked from 'marked';  //???
+import marked from 'marked';
 import { Utils } from 'meteor/vulcan:core';
 
 /**
@@ -71,7 +71,7 @@ const schema = {
       return Utils.slugify(event.name);
     },
     onEdit: (modifier, post) => {
-      if (modifier.$set.name) {   //???
+      if (modifier.$set.name) {
         return Utils.slugify(modifier.$set.name);
       }
     }

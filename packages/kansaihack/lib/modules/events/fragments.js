@@ -4,6 +4,7 @@ import { registerFragment } from 'meteor/vulcan:core';
 
 registerFragment(`
   fragment EventFragment on Event {
+    _id
     name
     description
     url

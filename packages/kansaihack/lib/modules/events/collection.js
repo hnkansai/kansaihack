@@ -12,7 +12,7 @@ import Users from 'meteor/vulcan:users';
  * @summary The global namespace for Comments.
  * @namespace Comments
  */
- export const Events = createCollection({	//??? what is a collection?
+ export const Events = createCollection({
 
    collectionName: 'Events',
 
