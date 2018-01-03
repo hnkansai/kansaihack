@@ -1,10 +1,10 @@
 {
   "public": {
 
-    "title": "Your site title",
-    "tagline":"Your site tagline",
+    "title": "KansaiHack",
+    "tagline":"Tech events in Kansai",
 
-    "logoUrl": "http://placekitten.com/250/80",
+    "logoUrl": "/kansaihack.svg",
     "logoHeight": "80",
     "logoWidth": "250",
     "faviconUrl": "/favicon.ico",
