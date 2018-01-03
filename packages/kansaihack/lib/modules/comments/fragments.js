@@ -25,10 +25,6 @@ registerFragment(`
         ...UsersMinimumInfo
       }
     }
-    # voting
-    currentUserVotes{
-      ...VoteFragment
-    }
     baseScore
     score
   }

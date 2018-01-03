@@ -1,5 +1,5 @@
 Package.describe({
-  name: "example-forum",
+  name: "kansaihack",
   summary: "Vulcan forum package",
   version: '1.8.2',
   git: "https://github.com/VulcanJS/Vulcan.git"
@@ -17,7 +17,6 @@ Package.onUse(function (api) {
     'vulcan:core@1.8.2',
 
     // vulcan packages
-    'vulcan:voting@1.8.2',
     'vulcan:accounts@1.8.2',
     'vulcan:email@1.8.2',
     'vulcan:forms@1.8.2',

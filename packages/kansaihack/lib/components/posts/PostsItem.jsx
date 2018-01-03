@@ -36,10 +36,6 @@ class PostsItem extends PureComponent {
     return (
       <div className={postClass}>
 
-        <div className="posts-item-vote">
-          <Components.Vote collection={Posts} document={post} currentUser={this.props.currentUser} />
-        </div>
-
         {post.thumbnailUrl ? <Components.PostsThumbnail post={post}/> : null}
 
         <div className="posts-item-content">

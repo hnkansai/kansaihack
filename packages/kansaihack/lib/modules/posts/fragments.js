@@ -30,12 +30,6 @@ registerFragment(`
     commenters {
       ...UsersMinimumInfo
     }
-    # voting
-    currentUserVotes{
-      ...VoteFragment
-    }
-    baseScore
-    score
   }
 `);
 
