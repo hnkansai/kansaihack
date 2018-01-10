@@ -38,6 +38,7 @@ const schema = {
     viewableBy: ['guests'],
     insertableBy: ['members'],
     editableBy: ['members'],
+    description: `The name of the meetup`,
   },
 
   url: {
