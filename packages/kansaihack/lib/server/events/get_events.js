@@ -34,13 +34,9 @@ export const fetchAndInsertEvents = async (meetup) => {
   // get all events for the meetup from Meetup.com API
   const events = getEvents(meetupUrlName);
 
-  // TODO
-  // only keep upcoming and public events
-  const upcomingEvents = events.filter(/*...*/);
-
   // cannot use forEach here
   // see https://stackoverflow.com/questions/37576685/using-async-await-with-a-foreach-loop
-  for (let e of event) {
+  for (let event of events) {
 
     // find out if event already exists in our database
     const existingEvent = Events.findOne({ meetupEventId: event.id });
