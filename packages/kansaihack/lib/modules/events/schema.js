@@ -32,7 +32,12 @@ const schema = {
       return new Date();
     }
   },
-  
+ 
+  meetupEventId: {
+    type: String,
+    viewableBy: ['guests'],
+  },
+
   name: {
     type: String,
     viewableBy: ['guests'],
@@ -103,7 +108,7 @@ const schema = {
     control: 'select',
   },
 
-  date: {
+  time: {
     type: Date,
     optional: true,
     viewableBy: ['guests'],

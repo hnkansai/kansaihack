@@ -21,3 +21,5 @@ import './api.js';
 import './rss.js';
 
 import './meetups/callbacks.js';
+
+export * from './events/get_events.js';
