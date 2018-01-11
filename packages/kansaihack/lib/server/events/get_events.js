@@ -1,4 +1,4 @@
-import { debug, getSetting } from 'meteor/vulcan:core';
+import { debug, getSetting, newMutation } from 'meteor/vulcan:core';
 import { Meetups } from '../../modules/meetups/';
 import { Events } from '../../modules/events/';
 import Meetup from 'meetup-api';
@@ -14,12 +14,11 @@ export const insertAllEvents = async () => {
   debug(`// Fetching events for ${meetups.length} meetup groups…`);
   
   meetups.forEach(meetup => {
-    const events = fetchAndInsertEvents(meetup); 
+    fetchAndInsertEvents(meetup); 
   });
 
   debug(`// Done fetching events for ${meetups.length} meetup groups`);
   
-  return events;
 }
 
 export const fetchAndInsertEvents = async (meetup) => {
@@ -32,9 +31,11 @@ export const fetchAndInsertEvents = async (meetup) => {
   const events = getEvents(meetupUrlName);
 
   // only keep upcoming and public events
-  const upcomingEvents = events.filter(...)
+  const upcomingEvents = events.filter(/*...*/);
 
-  events.forEach(event => {
+  // cannot use forEach here
+  // see https://stackoverflow.com/questions/37576685/using-async-await-with-a-foreach-loop
+  for (let e of event) {
 
     // find out if event already exists in our database
     const e = Events.findOne({ meetupEventId: event.id });
@@ -63,7 +64,7 @@ export const fetchAndInsertEvents = async (meetup) => {
       });
 
     }
-  });
+  }
 
   return events;
 }
