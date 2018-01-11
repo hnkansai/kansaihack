@@ -6,6 +6,10 @@ import { Link } from 'react-router';
 
 import { Meetups } from '../../modules/meetups/collection.js';
 
+const MeetupUrlName = ({ document }) => <a href={`http://meetup.com/${document.meetupUrlName}`} target="_blank">{document.name}</a>
+
+const MeetupDescription = ({ document }) => <div dangerouslySetInnerHTML={{ __html: document.description }} />
+
 const MeetupsDashboard = () => (
   <div className="meetups-dashboard">
     <h3>
@@ -18,11 +22,15 @@ const MeetupsDashboard = () => (
         fragmentName: 'MeetupFragment',
       }}
       columns={[
-        'meetupUrlName',
-        'name', 
+        {
+          name: 'meetupUrlName',
+          component: MeetupUrlName,
+        },
         'city',
-        'description',
-        'url',
+        {
+          name: 'description',
+          component: MeetupDescription,
+        },
         'logo',
         'photo',
         'membersCount',

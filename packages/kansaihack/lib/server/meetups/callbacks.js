@@ -44,7 +44,9 @@ async function addMeetupInfoOnNewMeetup (meetup, currentUser) {
 addCallback('meetups.new.before', addMeetupInfoOnNewMeetup);
 
 async function addMeetupInfoOnEditMeetup (modifier, meetup, currentUser) {
-  // if (modifier.$set && modifier.$set.meetupUrlName && modifier.$set.meetupUrlName !== meetup.meetupUrlName) {
+  
+  // if meetupUrlName has changed
+  if (modifier.$set && modifier.$set.meetupUrlName && modifier.$set.meetupUrlName !== meetup.meetupUrlName) {
     const { meetupUrlName } = modifier.$set;
 
     debug(`// Fetching data for modified meetup ${meetupUrlName}…`);
@@ -75,7 +77,7 @@ async function addMeetupInfoOnEditMeetup (modifier, meetup, currentUser) {
         small: meetupData.key_photo.thumb_link,
       };
     }
-  // }
+  }
 
   return modifier;
 }

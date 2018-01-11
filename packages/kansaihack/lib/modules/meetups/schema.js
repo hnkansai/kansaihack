@@ -38,6 +38,7 @@ const schema = {
     viewableBy: ['guests'],
     insertableBy: ['members'],
     editableBy: ['members'],
+    searchable: true,
   },
 
   name: {
@@ -47,15 +48,14 @@ const schema = {
     // insertableBy: ['members'],
     // editableBy: ['members'],
     description: `The name of the meetup`,
+    searchable: true,
   },
 
-  url: {
-    type: String,
-    optional: true,
-    viewableBy: ['guests'],
-    // insertableBy: ['members'],
-    // editableBy: ['members'],
-  },
+  // url: {
+  //   type: String,
+  //   optional: true,
+  //   viewableBy: ['guests'],
+  // },
 
   logo: {
     type: Object,
@@ -77,6 +77,7 @@ const schema = {
     type: String,
     optional: true,
     viewableBy: ['guests'],
+    searchable: true,
     // insertableBy: ['members'],
     // editableBy: ['members'],
     // control: 'textarea'
@@ -86,6 +87,7 @@ const schema = {
     type: String,
     optional: true,
     viewableBy: ['guests'],
+    searchable: true,
     // insertableBy: ['members'],
     // editableBy: ['members'],
   },

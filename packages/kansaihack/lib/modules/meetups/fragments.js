@@ -7,7 +7,6 @@ registerFragment(`
     _id
     name
     description
-    url
     meetupUrlName
     city
     logo
