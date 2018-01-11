@@ -19,12 +19,23 @@ async function addMeetupInfoOnNewMeetup (meetup, currentUser) {
     description: meetupData.description,
     city: meetupData.city,
     membersCount: meetupData.members,
-    photo: {
+    meetupCategory: meetupData.category.name,
+  }
+
+  if (meetupData.group_photo) {
+    meetup.logo = {
       large: meetupData.group_photo.highres_link,
       medium: meetupData.group_photo.photo_link,
       small: meetupData.group_photo.thumb_link,
-    },
-    meetupCategory: meetupData.category.name,
+    };
+  }
+
+  if (meetupData.key_photo) {
+    meetup.photo = {
+      large: meetupData.key_photo.highres_link,
+      medium: meetupData.key_photo.photo_link,
+      small: meetupData.key_photo.thumb_link,
+    };
   }
 
   return meetup;
@@ -46,12 +57,23 @@ async function addMeetupInfoOnEditMeetup (modifier, meetup, currentUser) {
       description: meetupData.description,
       city: meetupData.city,
       membersCount: meetupData.members,
-      photo: {
+      meetupCategory: meetupData.category.name,
+    }
+
+    if (meetupData.group_photo) {
+      modifier.$set.logo = {
         large: meetupData.group_photo.highres_link,
         medium: meetupData.group_photo.photo_link,
         small: meetupData.group_photo.thumb_link,
-      },
-      meetupCategory: meetupData.category.name,
+      };
+    }
+
+    if (meetupData.key_photo) {
+      modifier.$set.photo = {
+        large: meetupData.key_photo.highres_link,
+        medium: meetupData.key_photo.photo_link,
+        small: meetupData.key_photo.thumb_link,
+      };
     }
   // }
 

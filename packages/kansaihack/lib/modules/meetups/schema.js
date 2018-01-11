@@ -55,6 +55,14 @@ const schema = {
     // editableBy: ['members'],
   },
 
+  logo: {
+    type: Object,
+    optional: true,
+    viewableBy: ['guests'],
+    // insertableBy: ['members'],
+    // editableBy: ['members'],
+  },
+
   photo: {
     type: Object,
     optional: true,
