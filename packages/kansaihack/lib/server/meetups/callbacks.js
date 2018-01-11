@@ -1,4 +1,8 @@
-import { addCallback } from 'meteor/vulcan:core';
+import { addCallback, getSetting } from 'meteor/vulcan:core';
+import Meetup from 'meetup-api';
+
+const meetupAPIKey = getSetting('meetup.apiKey');
+const meetup = Meetup({ key: meetupAPIKey });
 
 async function addMeetupInfoOnNewMeetup (meetup, currentUser) {
   const { meetupUrlName } = meetup;

@@ -1,6 +1,10 @@
-import { debug } from 'meteor/vulcan:core';
+import { debug, getSetting } from 'meteor/vulcan:core';
 import { Meetups } from '../../modules/meetups/';
 import { Events } from '../../modules/events/';
+import Meetup from 'meetup-api';
+
+const meetupAPIKey = getSetting('meetup.apiKey');
+const meetup = Meetup({ key: meetupAPIKey });
 
 export const insertAllEvents = async () => {
 
