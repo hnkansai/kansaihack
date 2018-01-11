@@ -25,8 +25,6 @@ registerFragment(`
         ...UsersMinimumInfo
       }
     }
-    baseScore
-    score
   }
 `);
 

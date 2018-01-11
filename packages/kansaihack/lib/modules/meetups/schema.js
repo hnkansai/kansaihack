@@ -33,35 +33,63 @@ const schema = {
     }
   },
   
-  name: {
+  meetupUrlName: {
     type: String,
     viewableBy: ['guests'],
     insertableBy: ['members'],
     editableBy: ['members'],
+  },
+
+  name: {
+    type: String,
+    viewableBy: ['guests'],
+    // insertableBy: ['members'],
+    // editableBy: ['members'],
     description: `The name of the meetup`,
   },
 
   url: {
     type: String,
     viewableBy: ['guests'],
-    insertableBy: ['members'],
-    editableBy: ['members'],
+    // insertableBy: ['members'],
+    // editableBy: ['members'],
   },
 
-  image: {
-    type: String,
+  photo: {
+    type: Object,
     optional: true,
     viewableBy: ['guests'],
-    insertableBy: ['members'],
-    editableBy: ['members'],
+    // insertableBy: ['members'],
+    // editableBy: ['members'],
   },
 
   description: {
     type: String,
     viewableBy: ['guests'],
-    insertableBy: ['members'],
-    editableBy: ['members'],
-    control: 'textarea'
+    // insertableBy: ['members'],
+    // editableBy: ['members'],
+    // control: 'textarea'
+  },
+
+  city: {
+    type: String,
+    viewableBy: ['guests'],
+    // insertableBy: ['members'],
+    // editableBy: ['members'],
+  },
+
+  membersCount: {
+    type: Number,
+    viewableBy: ['guests'],
+    // insertableBy: ['members'],
+    // editableBy: ['members'],
+  },
+
+  meetupCategory: {
+    type: String,
+    viewableBy: ['guests'],
+    // insertableBy: ['members'],
+    // editableBy: ['members'],
   },
 
   slug: {

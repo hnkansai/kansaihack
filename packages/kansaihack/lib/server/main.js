@@ -19,3 +19,5 @@ import './posts/index.js';
 
 import './api.js';
 import './rss.js';
+
+import './meetups/callbacks.js';

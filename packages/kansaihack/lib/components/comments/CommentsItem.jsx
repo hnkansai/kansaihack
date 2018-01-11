@@ -101,9 +101,6 @@ class CommentsItem extends PureComponent {
       <div className="comments-item" id={comment._id}>
         <div className="comments-item-body">
           <div className="comments-item-meta">
-            <div className="comments-item-vote">
-              <Components.Vote collection={Comments} document={this.props.comment} currentUser={this.props.currentUser}/>
-            </div>
             <Components.UsersAvatar size="small" user={comment.user}/>
             <Components.UsersName user={comment.user}/>
             <div className="comments-item-date">{moment(new Date(comment.postedAt)).fromNow()}</div>
