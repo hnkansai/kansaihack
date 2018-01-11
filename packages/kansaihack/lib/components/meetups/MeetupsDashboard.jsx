@@ -18,9 +18,15 @@ const MeetupsDashboard = () => (
         fragmentName: 'MeetupFragment',
       }}
       columns={[
+        'meetupUrlName',
         'name', 
+        'city',
         'description',
         'url',
+        'logo',
+        'photo',
+        'membersCount',
+        'meetupCategory',
       ]}
       showNew={true}
       showEdit={true}

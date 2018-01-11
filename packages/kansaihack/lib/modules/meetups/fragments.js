@@ -8,6 +8,12 @@ registerFragment(`
     name
     description
     url
+    meetupUrlName
+    city
+    logo
+    photo
+    membersCount
+    meetupCategory
   }
 `);
 

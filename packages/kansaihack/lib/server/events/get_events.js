@@ -1,4 +1,4 @@
-import { debug, getSetting, newMutation } from 'meteor/vulcan:core';
+import { debug, getSetting, newMutator } from 'meteor/vulcan:core';
 import { Meetups } from '../../modules/meetups/';
 import { Events } from '../../modules/events/';
 import Meetup from 'meetup-api';
@@ -57,7 +57,7 @@ export const fetchAndInsertEvents = async (meetup) => {
 
       debug(`// Inserting event ${newEvent.name} happening on ${newEvent.time}`);
 
-      await newMutation({
+      await newMutator({
         Events,
         document: newEvent, 
         validate: false,

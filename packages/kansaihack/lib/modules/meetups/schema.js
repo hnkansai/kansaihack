@@ -42,6 +42,7 @@ const schema = {
 
   name: {
     type: String,
+    optional: true,
     viewableBy: ['guests'],
     // insertableBy: ['members'],
     // editableBy: ['members'],
@@ -50,6 +51,7 @@ const schema = {
 
   url: {
     type: String,
+    optional: true,
     viewableBy: ['guests'],
     // insertableBy: ['members'],
     // editableBy: ['members'],
@@ -73,6 +75,7 @@ const schema = {
 
   description: {
     type: String,
+    optional: true,
     viewableBy: ['guests'],
     // insertableBy: ['members'],
     // editableBy: ['members'],
@@ -81,6 +84,7 @@ const schema = {
 
   city: {
     type: String,
+    optional: true,
     viewableBy: ['guests'],
     // insertableBy: ['members'],
     // editableBy: ['members'],
@@ -88,6 +92,7 @@ const schema = {
 
   membersCount: {
     type: Number,
+    optional: true,
     viewableBy: ['guests'],
     // insertableBy: ['members'],
     // editableBy: ['members'],
@@ -95,6 +100,7 @@ const schema = {
 
   meetupCategory: {
     type: String,
+    optional: true,
     viewableBy: ['guests'],
     // insertableBy: ['members'],
     // editableBy: ['members'],
