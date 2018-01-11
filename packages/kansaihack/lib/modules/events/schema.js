@@ -1,6 +1,6 @@
 /*
 
-Comments schema
+Events schema
 
 */
 
@@ -9,7 +9,7 @@ import marked from 'marked';
 import { Utils } from 'meteor/vulcan:core';
 
 /**
- * @summary Comments schema
+ * @summary Events schema
  * @type {Object}
  */
 const schema = {

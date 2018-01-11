@@ -2,9 +2,11 @@ import { debug, getSetting, newMutator } from 'meteor/vulcan:core';
 import { Meetups } from '../../modules/meetups/';
 import { Events } from '../../modules/events/';
 import Meetup from 'meetup-api';
+import Bluebird from 'bluebird';
 
 const meetupAPIKey = getSetting('meetup.apiKey');
 const meetup = Meetup({ key: meetupAPIKey });
+const meetupAsync = Bluebird.promisifyAll(meetup);
 
 export const insertAllEvents = async () => {
 
@@ -23,13 +25,16 @@ export const insertAllEvents = async () => {
 
 export const fetchAndInsertEvents = async (meetup) => {
 
+  let count = 0;
   const { meetupUrlName, meetupId } = meetup;
 
   debug(`// Fetching events for group ${meetupUrlName}`);
 
+  // TODO
   // get all events for the meetup from Meetup.com API
   const events = getEvents(meetupUrlName);
 
+  // TODO
   // only keep upcoming and public events
   const upcomingEvents = events.filter(/*...*/);
 
@@ -38,10 +43,10 @@ export const fetchAndInsertEvents = async (meetup) => {
   for (let e of event) {
 
     // find out if event already exists in our database
-    const e = Events.findOne({ meetupEventId: event.id });
+    const existingEvent = Events.findOne({ meetupEventId: event.id });
 
     // if not, insert it
-    if (!e) {
+    if (!existingEvent) {
       
       const newEvent = {
         meetupId: meetupId,
@@ -55,16 +60,19 @@ export const fetchAndInsertEvents = async (meetup) => {
         description: event.description,
       }
 
-      debug(`// Inserting event ${newEvent.name} happening on ${newEvent.time}`);
+      debug(`// Inserting event ${newEvent.name} (happening on ${newEvent.time})`);
 
-      await newMutator({
+      const result = await newMutator({
         Events,
         document: newEvent, 
         validate: false,
       });
 
+      count++;
     }
   }
 
+  debug(`// Inserted ${count} new events for meetup group ${meetupUrlName}`);
+  
   return events;
 }
