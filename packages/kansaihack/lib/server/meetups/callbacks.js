@@ -1,5 +1,7 @@
 import { addCallback, getSetting } from 'meteor/vulcan:core';
+import BluebirdPromise from 'bluebird';
 import Meetup from 'meetup-api';
+BluebirdPromise.promisifyAll(Meetup);
 
 const meetupAPIKey = getSetting('meetup.apiKey');
 const meetup = Meetup({ key: meetupAPIKey });
@@ -15,10 +17,15 @@ async function addMeetupInfoOnNewMeetup (meetup, currentUser) {
     description: meetupData.description,
     city: meetupData.city,
     membersCount: meetupData.members,
-    photo: {
+    logo: {
       large: meetupData.group_photo.highres_link,
       medium: meetupData.group_photo.photo_link,
       small: meetupData.group_photo.thumb_link,
+    },
+    photo: {
+      large: meetupData.key_photo.highres_link,
+      medium: meetupData.key_photo.photo_link,
+      small: meetupData.key_photo.thumb_link,
     },
     meetupCategory: meetupData.category.name,
   }
@@ -40,10 +47,15 @@ async function addMeetupInfoOnEditMeetup (modifier, meetup, currentUser) {
       description: meetupData.description,
       city: meetupData.city,
       membersCount: meetupData.members,
-      photo: {
+      logo: {
         large: meetupData.group_photo.highres_link,
         medium: meetupData.group_photo.photo_link,
         small: meetupData.group_photo.thumb_link,
+      },
+      photo: {
+        large: meetupData.key_photo.highres_link,
+        medium: meetupData.key_photo.photo_link,
+        small: meetupData.key_photo.thumb_link,
       },
       meetupCategory: meetupData.category.name,
     }
