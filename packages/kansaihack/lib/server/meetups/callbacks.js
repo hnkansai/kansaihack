@@ -7,6 +7,8 @@ const meetup = Meetup({ key: meetupAPIKey });
 async function addMeetupInfoOnNewMeetup (meetup, currentUser) {
   const { meetupUrlName } = meetup;
 
+  debug(`// Fetching data for new meetup ${meetupUrlName}…`);
+
   const meetupData = await getMeetupData(meetupUrlName);
 
   meetup = {
@@ -32,6 +34,8 @@ async function addMeetupInfoOnEditMeetup (modifier, meetup, currentUser) {
   if (modifier.$set && modifier.$set.meetupUrlName && modifier.$set.meetupUrlName !== meetup.meetupUrlName) {
     const { meetupUrlName } = modifier.$set.meetupUrlName;
 
+    debug(`// Fetching data for modified meetup ${meetupUrlName}…`);
+    
     const meetupData = await getMeetupData(meetupUrlName);
 
     modifier.$set = {
