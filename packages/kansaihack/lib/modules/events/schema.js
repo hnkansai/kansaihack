@@ -41,31 +41,33 @@ const schema = {
   name: {
     type: String,
     viewableBy: ['guests'],
-    insertableBy: ['members'],
-    editableBy: ['members'],
+    // insertableBy: ['members'],
+    // editableBy: ['members'],
+    searchable: true,
   },
 
   url: {
     type: String,
     viewableBy: ['guests'],
-    insertableBy: ['members'],
-    editableBy: ['members'],
+    // insertableBy: ['members'],
+    // editableBy: ['members'],
   },
 
   image: {
     type: String,
     optional: true,
     viewableBy: ['guests'],
-    insertableBy: ['members'],
-    editableBy: ['members'],
+    // insertableBy: ['members'],
+    // editableBy: ['members'],
   },
 
   description: {
     type: String,
     viewableBy: ['guests'],
     insertableBy: ['members'],
-    editableBy: ['members'],
-    control: 'textarea'
+    // editableBy: ['members'],
+    // control: 'textarea'
+    searchable: true,
   },
 
   slug: {
@@ -85,8 +87,8 @@ const schema = {
   meetupId: {
     type: String,
     viewableBy: ['guests'],
-    insertableBy: ['members'],
-    editableBy: ['members'],
+    // insertableBy: ['members'],
+    // editableBy: ['members'],
     resolveAs: {
       fieldName: 'meetup',
       type: 'Meetup',
@@ -119,11 +121,24 @@ const schema = {
 
   // GraphQL only fields
 
+  meetupUrlName: {
+    type: String,
+    optional: true,
+    viewableBy: ['guests'],
+    resolveAs: {
+      type: 'String',
+      resolver: async (event, args, context) => {
+        const meetup = await context.Meetups.loader.load(event.meetupId);
+        return meetup.meetupUrlName;
+      },
+    }
+  },
+
   pageUrl: {
     type: String,
     optional: true,
+    viewableBy: ['guests'],
     resolveAs: {
-      fieldName: 'pageUrl',
       type: 'String',
       resolver: (event, args, context) => {
         return context.Events.getPageUrl(event, true);

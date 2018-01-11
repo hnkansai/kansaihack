@@ -7,7 +7,8 @@ registerFragment(`
     _id
     name
     description
-    url
+    meetupUrlName
+    meetupEventId
   }
 `);
 

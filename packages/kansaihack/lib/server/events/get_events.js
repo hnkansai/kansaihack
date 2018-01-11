@@ -26,14 +26,16 @@ export const insertAllEvents = async () => {
 export const fetchAndInsertEvents = async (meetup) => {
 
   let count = 0;
-  const { meetupUrlName, meetupId } = meetup;
+  const { meetupUrlName } = meetup;
 
-  debug(`// Fetching events for group ${meetupUrlName}`);
+  debug(`// Fetching events for group ${meetupUrlName}…`);
 
-  // TODO
   // get all events for the meetup from Meetup.com API
-  const events = getEvents(meetupUrlName);
-
+  const data = await meetupAsync.getEventsAsync({ group_urlname: meetupUrlName });
+  const events = data.results;
+ 
+  debug(`// Found ${events.length} events`);
+  
   // cannot use forEach here
   // see https://stackoverflow.com/questions/37576685/using-async-await-with-a-foreach-loop
   for (let event of events) {
@@ -45,7 +47,7 @@ export const fetchAndInsertEvents = async (meetup) => {
     if (!existingEvent) {
       
       const newEvent = {
-        meetupId: meetupId,
+        meetupId: meetup._id,
         meetupEventId: event.id,
         name: event.name,
         time: new Date(event.time),
@@ -59,7 +61,7 @@ export const fetchAndInsertEvents = async (meetup) => {
       debug(`// Inserting event ${newEvent.name} (happening on ${newEvent.time})`);
 
       const result = await newMutator({
-        Events,
+        collection: Events,
         document: newEvent, 
         validate: false,
       });
@@ -68,7 +70,8 @@ export const fetchAndInsertEvents = async (meetup) => {
     }
   }
 
-  debug(`// Inserted ${count} new events for meetup group ${meetupUrlName}`);
+  debug(`// Inserted ${count} new events out of ${events.length} total for meetup group ${meetupUrlName}`);
   
   return events;
+
 }

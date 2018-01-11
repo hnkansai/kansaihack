@@ -6,6 +6,10 @@ import { Link } from 'react-router';
 
 import { Events } from '../../modules/events/collection.js';
 
+const EventMeetupEventId = ({ document }) => <a href={`https://www.meetup.com/${document.meetupUrlName}/events/${document.meetupEventId}/`} target="_blank">{document.name}</a>
+
+const EventDescription = ({ document }) => <div dangerouslySetInnerHTML={{ __html: document.description }} />
+
 const EventsDashboard = () => (
   <div className="events-dashboard">
     <h3>
@@ -18,9 +22,14 @@ const EventsDashboard = () => (
         fragmentName: 'EventFragment',
       }}
       columns={[
-        'name', 
-        'description',
-        'url',
+        {
+          name: 'name',
+          component: EventMeetupEventId
+        },
+        {
+          name: 'description',
+          component: EventDescription,
+        },
       ]}
       showNew={true}
       showEdit={true}
