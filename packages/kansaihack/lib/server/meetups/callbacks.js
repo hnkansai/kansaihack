@@ -1,15 +1,17 @@
-import { addCallback, getSetting } from 'meteor/vulcan:core';
+import { debug, addCallback, getSetting } from 'meteor/vulcan:core';
 import Meetup from 'meetup-api';
+import Bluebird from 'bluebird';
 
 const meetupAPIKey = getSetting('meetup.apiKey');
 const meetup = Meetup({ key: meetupAPIKey });
+const meetupAsync = Bluebird.promisifyAll(meetup);
 
 async function addMeetupInfoOnNewMeetup (meetup, currentUser) {
   const { meetupUrlName } = meetup;
 
   debug(`// Fetching data for new meetup ${meetupUrlName}…`);
 
-  const meetupData = await getMeetupData(meetupUrlName);
+  const meetupData = await meetupAsync.getGroupAsync({ urlname: meetupUrlName });
 
   meetup = {
     ...meetup,
@@ -31,12 +33,12 @@ async function addMeetupInfoOnNewMeetup (meetup, currentUser) {
 addCallback('meetups.new.before', addMeetupInfoOnNewMeetup);
 
 async function addMeetupInfoOnEditMeetup (modifier, meetup, currentUser) {
-  if (modifier.$set && modifier.$set.meetupUrlName && modifier.$set.meetupUrlName !== meetup.meetupUrlName) {
-    const { meetupUrlName } = modifier.$set.meetupUrlName;
+  // if (modifier.$set && modifier.$set.meetupUrlName && modifier.$set.meetupUrlName !== meetup.meetupUrlName) {
+    const { meetupUrlName } = modifier.$set;
 
     debug(`// Fetching data for modified meetup ${meetupUrlName}…`);
     
-    const meetupData = await getMeetupData(meetupUrlName);
+    const meetupData = await meetupAsync.getGroupAsync({ urlname: meetupUrlName });
 
     modifier.$set = {
       ...modifier.$set,
@@ -51,7 +53,7 @@ async function addMeetupInfoOnEditMeetup (modifier, meetup, currentUser) {
       },
       meetupCategory: meetupData.category.name,
     }
-  }
+  // }
 
   return modifier;
 }
